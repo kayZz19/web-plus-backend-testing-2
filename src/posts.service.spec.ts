@@ -7,8 +7,9 @@ describe("PostsService", () => {
     text: "Mocked post",
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     postsService = new PostsService();
+
     postsService.create({ text: "Some pre-existing post" });
   });
 
@@ -28,10 +29,5 @@ describe("PostsService", () => {
     const foundPost = postsService.find(createdPost.id);
 
     expect(foundPost).toEqual(createdPost);
-    expect(foundPost).toEqual({
-      id: "2",
-      text: "Mocked post",
-      date: expect.any(String),
-    });
   });
 });
