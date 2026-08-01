@@ -9,14 +9,13 @@ describe("PostsService", () => {
 
   beforeEach(() => {
     postsService = new PostsService();
-
     postsService.create({ text: "Some pre-existing post" });
   });
 
   it("should add a new post", () => {
-    postsService.create(post);
+    const createdPost = postsService.create(post);
 
-    expect(postsService.find("2")).toMatchObject({
+    expect(createdPost).toEqual({
       id: "2",
       text: "Mocked post",
       date: expect.any(String),
@@ -26,6 +25,13 @@ describe("PostsService", () => {
   it("should find a post", () => {
     const createdPost = postsService.create(post);
 
-    expect(postsService.find(createdPost.id)).toStrictEqual(createdPost);
+    const foundPost = postsService.find(createdPost.id);
+
+    expect(foundPost).toEqual(createdPost);
+    expect(foundPost).toEqual({
+      id: "2",
+      text: "Mocked post",
+      date: expect.any(String),
+    });
   });
 });
