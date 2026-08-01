@@ -14,9 +14,10 @@ describe("PostsService", () => {
   });
 
   it("should add a new post", () => {
-    const createdPost = postsService.create(post);
+    postsService.create(post);
 
-    expect(createdPost).toEqual({
+    expect(postsService["posts"]).toHaveLength(2);
+    expect(postsService["posts"][1]).toEqual({
       id: "2",
       text: "Mocked post",
       date: expect.any(String),
@@ -26,8 +27,6 @@ describe("PostsService", () => {
   it("should find a post", () => {
     const createdPost = postsService.create(post);
 
-    const foundPost = postsService.find(createdPost.id);
-
-    expect(foundPost).toEqual(createdPost);
+    expect(postsService.find(createdPost.id)).toBe(createdPost);
   });
 });
