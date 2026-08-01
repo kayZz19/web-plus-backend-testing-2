@@ -31,4 +31,3 @@ it('should find a post', () => {
 
     expect(postsService.find(createdPost.id)).toEqual(createdPost);
   });
-});
